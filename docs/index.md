@@ -22,12 +22,12 @@ vaEVAS 是课题组面向 **Verilog-A 建模与评测**的研究项目，由两�
 | 方面 | 当前状态 | 口径 |
 | --- | --- | --- |
 | 阶段目标 | DAC 2027 投稿：摘要 2026-11-11、全文 2026-11-18（美西时间 17:00），双盲评审。按一篇论文组织 benchmark 与 EVAS 的研究结论；论文用到的题目、工具和实验版本会提前冻结。进度见[看板的里程碑](board.md#里程碑) | 计划 |
-| EVAS | [PR208](https://github.com/BucketSran/vaEVAS/pull/208) 已于 2026-10-21 合入 main。400 道原题的开发重放通过 342 道（上一次开发重放为 320），还剩 58 道 | 开发中 |
+| EVAS | [PR220](https://github.com/BucketSran/vaEVAS/pull/220) 已于 2026-10-22 合入 main（`6f3a6b54`）。400 道原题的开发重放通过 343 道（5 道判错、52 道拒绝），还剩 57 道；上一次开发重放为 342，零丢失。[Issue214](https://github.com/BucketSran/vaEVAS/issues/214) 已暂停，等用户的几项决定和统一跑的 Spectre | 开发中 |
 | EVAS | 最近一次正式检查点（`159c0512`）：318 通过、19 失败、63 拒绝 | 已验收 |
-| EVAS | 2026-10-22：用旧版 EVAS 0.8.7 做差分对照，并审计了 checker。Spectre 清单里有 21 道必跑题（审计列出的 20 道，加上 140 的零边沿探针），等待统一运行 | 开发中 |
+| EVAS | 2026-10-22：用旧版 EVAS 0.8.7 做差分对照（393/400），并审计了 checker：确认 137、142、179、226、058 五个 checker 缺陷；140 的显式零边沿按用户决定继续拒绝。Spectre 清单里有 21 道必跑题（审计列出的 20 道，加上 140 的零边沿探针），等待统一运行；勘误版 checker 与 Spectre 批次见 [#221](https://github.com/BucketSran/vaEVAS/issues/221) | 开发中 |
 | Benchmark | [正式清单](repo:benchmark/tasks/benchmark.toml)有 {{ bench_formal }} 题；草稿批次共 {{ bench_drafts }} 个题包（{{ bench_batches }}），完整审核尚未完成（自动读取 main） | 开发中 |
 | 进行中的工作 | {{ board_active }} | 自动读取 [项目看板](board.md) |
-| 历史资产 | 正在给 vaBench v1–v4 建勘误表，并按来源和任务价值筛选（纯化）；纯化目前只完成了 pilot | 开发中 |
+| 历史资产 | 正在给 vaBench v1–v4 建勘误表，并按来源和任务价值筛选（纯化）；纯化目前只完成了 pilot，全量范围待定（[#222](https://github.com/BucketSran/vaEVAS/issues/222)） | 开发中 |
 
 详细记录见[更新日志](changelog/index.md)；所有进行中和计划中的工作见[项目看板](board.md)。
 
@@ -71,7 +71,7 @@ flowchart LR
 | 数字 | 含义 | 不代表什么 |
 | --- | --- | --- |
 | {{ cmp_evas }} / {{ cmp_total }} | EVAS 在四后端对比表前五节的 {{ cmp_total }} 个用例上的通过数（Spectre {{ cmp_spectre }}，ngspice + OpenVAF-R {{ cmp_ngspice }}，Gnucap + modelgen-verilog {{ cmp_gnucap }}） | 这些用例是本项目按 EVAS 目标范围选的；不代表当前 main 做过一次全量验收，也不说明 EVAS 速度更快 |
-| 342 / 400 | 当前 EVAS 在 400 道历史原题上的开发重放通过数 | 不是验收收据；正式检查点是 318 |
+| 343 / 400 | 当前 EVAS（main `6f3a6b54`）在 400 道历史原题上的开发重放通过数 | 不是验收收据；正式检查点是 318 |
 | {{ bench_formal }} | benchmark 正式清单里的题数 | 草稿已有 {{ bench_drafts }} 个题包，审核完一题录取一题 |
 
 ### 自己试一下

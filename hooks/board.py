@@ -90,7 +90,7 @@ def _stage(issue: dict) -> list[str]:
 
 def _summary(body: str) -> str:
     text = re.sub(r"<!--.*?-->", "", body, flags=re.S)
-    current = re.search(r"^#{2,4} *(?:当前摘要|当前进展|本轮结果)[^\n]*\n(.*?)(?=^#{1,4} |\Z)", text, re.M | re.S)
+    current = re.search(r"^#{2,4} *(?:当前摘要|当前状态|当前进展|本轮结果)[^\n]*\n(.*?)(?=^#{1,4} |\Z)", text, re.M | re.S)
     for para in re.split(r"\n\s*\n", current.group(1) if current else text):
         para = para.strip()
         if not para or para.startswith(("#", "|", "<", "```", "- [", "* [")):
