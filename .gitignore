@@ -1,0 +1,6 @@
+.venv/
+build/
+docs/_generated/
+docs/evas/manual/
+__pycache__/
+.DS_Store

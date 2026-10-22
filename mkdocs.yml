@@ -1,0 +1,136 @@
+site_name: vaEVAS
+site_description: Verilog-A benchmark 与 EVAS 电压域仿真器
+docs_dir: docs
+exclude_docs: |
+  _generated/
+site_dir: build/site
+site_url: https://bucketsran.github.io/vaevas-site/
+# 公开网站：GitHub Actions 定时从 vaEVAS main 和 Issue 重新构建，见 .github/workflows/deploy.yml
+
+theme:
+  name: material
+  language: zh
+  font: false  # 不从 Google Fonts 加载
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色
+
+extra:
+  generator: false
+  # 不设 repo_url：它会让每页请求 GitHub API
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/BucketSran/vaEVAS
+      name: GitHub 仓库
+
+hooks:
+  - hooks/site_hooks.py
+  - hooks/board.py
+
+plugins:
+  - search:
+      lang: zh
+  - blog:
+      blog_dir: changelog
+      blog_toc: true
+      post_date_format: long
+      post_url_format: "{date}/{slug}"
+      post_excerpt: required
+      post_readtime: false
+      archive_name: 按月份
+      categories_name: 分类
+      categories_allowed:
+        - EVAS
+        - Benchmark
+        - 项目
+      pagination_per_page: 30
+
+markdown_extensions:
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - def_list
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.snippets:
+      base_path: [docs]
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+
+extra_css:
+  - assets/vendor/katex/katex.min.css
+  - assets/site.css
+
+extra_javascript:
+  - assets/vendor/katex/katex.min.js
+  - assets/vendor/katex/contrib/auto-render.min.js
+  - assets/katex-init.js
+  - assets/vendor/mermaid/mermaid.min.js  # 定义后 Material 不再去 unpkg 下载
+
+nav:
+  - 介绍: index.md
+  - 项目看板: board.md
+  - EVAS:
+      - evas/index.md
+      - 四后端对比表: evas/comparison.md
+      - 数学原理: evas/math.md
+      - 完整数学手册:
+          - evas/manual/math/README.md
+          - 电压方程与数值求解: evas/manual/math/solving.md
+          - 事件: evas/manual/math/events.md
+          - 直接输入算子: evas/manual/math/operators.md
+          - 连续动态: evas/manual/math/continuous.md
+      - 对比评测标准: evas/manual/COMPARISON-METHODOLOGY.md
+  - Benchmark:
+      - benchmark/index.md
+      - 预览版本: benchmark/preview.md
+  - Reference:
+      - reference/index.md
+      - vaBench v1: reference/vabench-v1.md
+      - vaBench v2 / v3: reference/vabench-v2-v3.md
+      - vaBench v4: reference/vabench-v4.md
+      - 早期题包: reference/early-tasks.md
+  - 模型成绩榜: leaderboard.md
+  - 更新日志:
+      - changelog/index.md
+
+# MkDocs 认不出 <a id> 写的锚点；锚点由 tools/check_links.py 在构建后检查
+validation:
+  links:
+    anchors: ignore
