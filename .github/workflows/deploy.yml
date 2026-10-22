@@ -12,6 +12,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  TZ: Asia/Shanghai # 页脚和看板按北京时间显示
+
 concurrency:
   group: pages
   cancel-in-progress: true
