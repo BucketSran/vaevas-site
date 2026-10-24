@@ -88,7 +88,7 @@ v4 没有记录 gold 模型的真实来源，也就是它来自 Cadence 库还�
 !!! warning "legacy EVAS 通过不等于 Spectre 通过"
     两个 legacy 版本与当前 EVAS 同源，结果一致不能证明正确。据主会话统计，400 题里只有约 10 题有记录在案的 Spectre 运行：091、320、261–264、267、271、275、276。本页只核到 261–264、267 的历史 Spectre 结论（`current/runs/evas-source-shape-20261017/overnight-integer-20261018/issue214-checker-spectre-pilot-20261020/execution/analysis/REPORT-final.md`），其余题号**未核实**。
 
-当前 EVAS 剩下的 57 题属于 EVAS 引擎的工作（Issue214），本身不是 v4 的勘误。只有能归因到题目材料，或经审计判定归 EVAS 修的题，才进下面的表。
+当前 EVAS 剩下的 57 题属于 EVAS 引擎的工作（Issue214），本身不是 v4 的勘误。只有能归因到题目材料，或经审计判定归 EVAS 修的题，才进下面的表。这 57 题来自 2026-10-22、main `6f3a6b54` 的开发重放；其后合入 main 的 PR 没有重跑这 400 题。
 
 ## 3. 已知问题（勘误表）
 
