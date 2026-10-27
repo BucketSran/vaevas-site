@@ -96,12 +96,14 @@ markdown_extensions:
 extra_css:
   - assets/vendor/katex/katex.min.css
   - assets/site.css
+  - assets/circuit-map.css  # PROTOTYPE
 
 extra_javascript:
   - assets/vendor/katex/katex.min.js
   - assets/vendor/katex/contrib/auto-render.min.js
   - assets/katex-init.js
   - assets/vendor/mermaid/mermaid.min.js  # 定义后 Material 不再去 unpkg 下载
+  - assets/circuit-map.js  # PROTOTYPE
 
 nav:
   - 介绍: index.md
@@ -120,6 +122,7 @@ nav:
   - Benchmark:
       - benchmark/index.md
       - 预览版本: benchmark/preview.md
+      - 电路地图（原型）: benchmark/circuit-map.md
   - Reference:
       - reference/index.md
       - vaBench v1: reference/vabench-v1.md
